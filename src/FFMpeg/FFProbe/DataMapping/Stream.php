@@ -38,6 +38,29 @@ class Stream extends AbstractData
     }
 
     /**
+     * Returns the framerate of the video stream.
+     *
+     * @return float
+     *
+     * @throws LogicException   in case the stream is not a video stream
+     * @throws RuntimeException in case the frame-rates can not be gotten
+     */
+    public function getFrameRate() {
+        // ffprobe [filepath] -show_streams
+        if (!$this->isVideo()) {
+            throw new LogicException('Frame-rates can only be retrieved from video streams.');
+        }
+
+        $framerate_string = $this->get('r_frame_rate');
+        if ($framerate_string !== null && preg_match('/\d+\/\d+/', $framerate_string)) {
+            $string_parts = explode('/', $framerate_string);
+            return (float) $string_parts[0] / (float) $string_parts[1];
+        } else {
+            throw new RuntimeException('Unable to retrieve frame-rates from stream.');
+        }
+    }
+
+    /**
      * Returns the dimension of the video stream.
      *
      * @return Dimension
