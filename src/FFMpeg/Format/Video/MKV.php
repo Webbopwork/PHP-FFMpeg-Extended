@@ -1,22 +1,13 @@
 <?php
 
-/*
- * This file is part of PHP-FFmpeg.
- *
- * (c) Alchemy <info@alchemy.fr>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace FFMpeg\Format\Video;
 
 /**
- * The WebM video format.
+ * The MKV video format.
  */
-class WebM extends DefaultVideo
+class MKV extends DefaultVideo
 {
-    public function __construct($audioCodec = 'libvorbis', $videoCodec = 'libvpx-vp9')
+    public function __construct($audioCodec = 'libopus', $videoCodec = 'libaom-av1')
     {
         $this
             ->setAudioCodec($audioCodec)
@@ -36,7 +27,7 @@ class WebM extends DefaultVideo
      */
     public function getExtraParams()
     {
-        return ['-f', 'webm'];
+        return ['-f', 'mkv'];
     }
 
     /**
