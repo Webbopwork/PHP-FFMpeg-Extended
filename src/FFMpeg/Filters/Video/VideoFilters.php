@@ -155,6 +155,50 @@ class VideoFilters extends AudioFilters
     }
 
     /**
+     * Limits video bitrate to a range.
+     *
+     * @param string $minrate
+     * @param string $maxrate
+     *
+     * @return VideoFilters
+     */
+    public function bitRateRange($minrate, $maxrate)
+    {
+        $this->media->addFilter(new BitRateRangeFilter($minrate, $maxrate));
+
+        return $this;
+    }
+
+    /**
+     * Sets video target bitrate.
+     *
+     * @param string $bitrate
+     *
+     * @return VideoFilters
+     */
+    public function targetBitRate($bitrate)
+    {
+        $this->media->addFilter(new TargetBitRateFilter($bitrate));
+
+        return $this;
+    }
+
+    /**
+     * Sets the video's Constant Rate Factor.
+     *
+     * @param string $crf
+     *
+     * @return VideoFilters
+     */
+    public function constantRateFactor($crf)
+    {
+        $this->media->addFilter(new ConstantRateFactorFilter($crf));
+
+        return $this;
+    }
+
+
+    /**
      * Applies a custom filter: -vf foo bar.
      *
      * @param string $parameters
