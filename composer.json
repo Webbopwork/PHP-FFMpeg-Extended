@@ -1,5 +1,5 @@
 {
-    "name": "php-ffmpeg/php-ffmpeg-extended",
+    "name": "Webbopwork/php-ffmpeg-extended",
     "type": "library",
     "description": "FFMpeg PHP, an Object Oriented library to communicate with AVconv / ffmpeg",
     "keywords": [
